@@ -5,6 +5,6 @@
 </head>
 <body>
 这是首页
-${requestScope.msg}
+<%--${requestScope.msg}--%>
 </body>
 </html>
