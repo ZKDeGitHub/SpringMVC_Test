@@ -1,6 +1,8 @@
 package com.edu.controller;
 
 import com.edu.entity.User;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,20 +18,53 @@ import java.util.Arrays;
  * 2 数组
  * 3 对象
  * 4 包装，List，Map（了解）
- * 5 JSON格式字符串（重点）
+ * 5 JSON格式字符串（重点）：形参为对象类型，形参为字符串类型
  */
 @Controller
 public class SecondController {
 
     /**
-     * json
+     * json-形参为字符串类型
+     * @param str
+     * @return
+     */
+    @PostMapping("json2")
+    public String method2(@RequestBody String str){
+
+        System.out.println("获取到的原始json字符串格式：" + str);
+
+        //把获取到的json字符串转换为对象
+        ObjectMapper objectMapper = new ObjectMapper();
+        User user = null;
+        try {
+            user = objectMapper.readValue(str,User.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        System.out.println("转换后的user对象：" + user);
+        return "success";
+    }
+
+    /**
+     * json-形参为对象类型
      * 传入的json的key值名称要与User的成员变量名称一致
      * @param user
      * @return
      */
     @PostMapping("json1")
-    public String method(@RequestBody User user){
-        System.out.println(user);
+    public String method1(@RequestBody User user){
+
+        System.out.println("接收到的user对象：" + user);
+
+        //把对象转换为字符串
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            String s = objectMapper.writeValueAsString(user);
+            System.out.println("转化后的json串：" + s);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
         return "success";
     }
 
