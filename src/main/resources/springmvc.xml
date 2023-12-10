@@ -17,6 +17,7 @@
     <!--视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!--配置返回的jsp所在的目录，prefix前缀，suffix后缀-->
+        <!--此处配置的返回目录为/WEB-INF/pages/下的.jsp文件-->
         <property name="prefix" value="/WEB-INF/pages/"></property>
         <property name="suffix" value=".jsp"></property>
     </bean>

@@ -24,7 +24,10 @@
             <artifactId>spring-webmvc</artifactId>
             <version>5.2.10.RELEASE</version>
         </dependency>
+
         <!--servlet服务依赖包-->
+        <!--获取ServletAPI需要的依赖-->
+        <!--获取到原始的HttpServletRequest,HttpServletResponse,HttpSession-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>

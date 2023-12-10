@@ -18,9 +18,24 @@ import java.io.IOException;
 @RequestMapping("third")
 public class ThirdController {
 
+    /**
+     * 也可以获取HttpSession 对象
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
     @GetMapping("method1")
-    public String method1(HttpServletRequest httpServletRequest, HttpServletResponse response) throws IOException {
-        httpServletRequest.setAttribute("msg","hello");
+    public String method1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        //原生对象
+        System.out.println(request);
+        System.out.println(response);
+
+        request.setCharacterEncoding("UTF-8");
+        request.setAttribute("msg","hello");
+
+        response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=utf8");
         response.getWriter().write("response 写出去");
         return "success";
